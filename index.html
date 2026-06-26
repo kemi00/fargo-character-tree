@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fargo: Character Connections</title>
+  <link rel="preconnect" href="https://static.wikia.nocookie.net" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <h1>FARGO</h1>
+      <p class="tagline">Character Connections</p>
+    </div>
+    <div class="topbar-right">
+      <div class="search">
+        <input id="search" type="text" placeholder="Find a character…" autocomplete="off" />
+        <ul id="search-results" class="search-results" hidden></ul>
+      </div>
+      <a class="source" href="https://fargo.fandom.com/wiki/Fargo_(TV_series)" target="_blank" rel="noopener">
+        Source: Fargo Wiki ↗
+      </a>
+    </div>
+  </header>
+
+  <nav class="seasons" id="season-tabs"><!-- season buttons injected by JS --></nav>
+
+  <div class="season-meta">
+    <span id="season-blurb" class="blurb"></span>
+    <span id="season-stats" class="stats"></span>
+  </div>
+
+  <main class="stage">
+    <div id="cy" class="graph"></div>
+
+    <div id="legend" class="legend"><!-- group color chips injected by JS --></div>
+
+    <div class="hint" id="hint">Click a character to trace their connections · drag to pan · scroll to zoom</div>
+
+    <aside id="panel" class="panel" hidden>
+      <button class="panel-close" id="panel-close" aria-label="Close">×</button>
+      <img id="panel-img" class="panel-img" alt="" />
+      <h2 id="panel-name" class="panel-name"></h2>
+      <p id="panel-aka" class="panel-aka" hidden></p>
+      <p id="panel-actor" class="panel-actor"></p>
+      <div id="panel-seasons" class="panel-seasons" hidden></div>
+      <span id="panel-group" class="panel-group"></span>
+      <p id="panel-role" class="panel-role"></p>
+      <div class="panel-conns">
+        <h3>Connections</h3>
+        <ul id="panel-conn-list"></ul>
+      </div>
+    </aside>
+
+    <div class="toolbar">
+      <button id="btn-fit" class="tool" title="Fit graph to screen">Fit</button>
+      <button id="btn-relayout" class="tool" title="Re-run the layout">Shuffle</button>
+      <button id="btn-layout" class="tool" title="Switch between stacked-by-season and free organic cluster layout">Layout: Free</button>
+      <label class="tool toggle">
+        <input type="checkbox" id="toggle-labels" /> Labels
+      </label>
+    </div>
+  </main>
+
+  <!-- Cytoscape core + fcose layout (with its dependency chain) -->
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape@3.30.2/dist/cytoscape.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/layout-base@2.0.1/layout-base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cose-base@2.2.0/cose-base.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cytoscape-fcose@2.2.0/cytoscape-fcose.js"></script>
+  <script src="data.js?v=18"></script>
+  <script src="app.js?v=18"></script>
+</body>
+</html>
